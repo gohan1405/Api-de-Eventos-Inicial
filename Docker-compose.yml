@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    container_name: api-eventos-app
+    ports:
+      - "8081:8080"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    env_file:
+      - .env
+
+    # En docker-compose.yml, cambia la sección environment así:
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://ep-billowing-sky-acsd97ql-pooler.sa-east-1.aws.neon.tech/gestioneventosdb?sslmode=require
+      SPRING_DATASOURCE_USERNAME: neondb_owner
+      SPRING_DATASOURCE_PASSWORD: npg_7B9CmpTruVLd
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      JWT_SECRET: UnaClaveMuySecretaParaFirmarTusJWTTokensYQueNadieLosFalsifiqueEsImportante
+      JWT_EXPIRATION: "600000"
+      SPRING_PROFILES_ACTIVE: dev
